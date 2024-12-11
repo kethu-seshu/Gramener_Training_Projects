@@ -1,0 +1,235 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Air Quality API",
+    "description": "API for managing air quality data.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000"
+    },
+    {
+      "url": "http://127.0.0.1:5000"
+    }
+  ],
+  "tags": [
+    {
+      "name": "air-quality",
+      "description": "CRUD Operations for Air Quality Data"
+    }
+  ],
+  "paths": {
+    "/air-quality": {
+      "get": {
+        "tags": [
+          "air-quality"
+        ],
+        "summary": "Retrieve all air quality data",
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AirQuality"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "air-quality"
+        ],
+        "summary": "Add new air quality entry",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AirQuality"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created successfully"
+          }
+        }
+      }
+    },
+    "/air-quality/{id}": {
+      "get": {
+        "tags": [
+          "air-quality"
+        ],
+        "summary": "Retrieve specific air quality entry",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AirQuality"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "air-quality"
+        ],
+        "summary": "Update air quality entry",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AirQuality"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated successfully"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "air-quality"
+        ],
+        "summary": "Delete air quality entry",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Deleted successfully"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AirQuality": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "City": {
+            "type": "string",
+            "example": "Delhi"
+          },
+          "Date": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-01-01"
+          },
+          "PM2.5": {
+            "type": "number",
+            "example": 150
+          },
+          "PM10": {
+            "type": "number",
+            "example": 300
+          },
+          "NO": {
+            "type": "number",
+            "example": 50
+          },
+          "NO2": {
+            "type": "number",
+            "example": 80
+          },
+          "NOx": {
+            "type": "number",
+            "example": 100
+          },
+          "NH3": {
+            "type": "number",
+            "example": 20
+          },
+          "CO": {
+            "type": "number",
+            "example": 1.2
+          },
+          "SO2": {
+            "type": "number",
+            "example": 5
+          },
+          "O3": {
+            "type": "number",
+            "example": 70
+          },
+          "Benzene": {
+            "type": "number",
+            "example": 2.0
+          },
+          "Toluene": {
+            "type": "number",
+            "example": 5.1
+          },
+          "Xylene": {
+            "type": "number",
+            "example": 0.5
+          },
+          "AQI": {
+            "type": "integer",
+            "example": 250
+          },
+          "AQI_Bucket": {
+            "type": "string",
+            "example": "Poor"
+          }
+        }
+      }
+    }
+  }
+}
