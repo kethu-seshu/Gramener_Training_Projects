@@ -1,0 +1,325 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Investment API",
+    "description": "API for managing investment data",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000"
+    },
+    {
+      "url": "http://127.0.0.1:5000"
+    }
+  ],
+  "tags": [
+    {
+      "name": "investment",
+      "description": "CRUD operations for investments"
+    }
+  ],
+  "paths": {
+    "/investments": {
+      "get": {
+        "tags": [
+          "investment"
+        ],
+        "summary": "Retrieve all investments",
+        "responses": {
+          "200": {
+            "description": "List of investments",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Investment"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "investment"
+        ],
+        "summary": "Create a new investment",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "Stock"
+                  },
+                  "Company": {
+                    "type": "string",
+                    "example": "GOOGL"
+                  },
+                  "Buyer": {
+                    "type": "string",
+                    "example": "Nithin"
+                  },
+                  "Date": {
+                    "type": "string",
+                    "example": "15-12-24"
+                  },
+                  "amount": {
+                    "type": "integer",
+                    "example": 50
+                  },
+                  "price_per_unit": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 2800.0
+                  }
+                },
+                "required": [
+                  "type",
+                  "Company",
+                  "amount",
+                  "price_per_unit"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Investment created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "example": "Stock"
+                    },
+                    "Company": {
+                      "type": "string",
+                      "example": "GOOGL"
+                    },
+                    "Buyer": {
+                      "type": "string",
+                      "example": "Nithin"
+                    },
+                    "Date": {
+                      "type": "string",
+                      "example": "15-12-24"
+                    },
+                    "amount": {
+                      "type": "integer",
+                      "example": 50
+                    },
+                    "price_per_unit": {
+                      "type": "number",
+                      "format": "float",
+                      "example": 2800.0
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "Company",
+                    "amount",
+                    "price_per_unit"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/investments/{id}": {
+      "get": {
+        "tags": [
+          "investment"
+        ],
+        "summary": "Retrieve a specific investment by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Investment details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Investment"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Investment not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "investment"
+        ],
+        "summary": "Update an existing investment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "Stock"
+                  },
+                  "Company": {
+                    "type": "string",
+                    "example": "GOOGL"
+                  },
+                  "Buyer": {
+                    "type": "string",
+                    "example": "Nithin"
+                  },
+                  "Date": {
+                    "type": "string",
+                    "example": "15-12-24"
+                  },
+                  "amount": {
+                    "type": "integer",
+                    "example": 50
+                  },
+                  "price_per_unit": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 2800.0
+                  }
+                },
+                "required": [
+                  "type",
+                  "Company",
+                  "amount",
+                  "price_per_unit"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Investment updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Investment not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "investment"
+        ],
+        "summary": "Delete an investment by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Investment deleted successfully"
+          },
+          "404": {
+            "description": "Investment not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Investment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1,
+            "format": "int64"
+          },
+          "type": {
+            "type": "string",
+            "example": "Stock"
+          },
+          "Company": {
+            "type": "string",
+            "example": "AAPL"
+          },
+          "Buyer": {
+            "type": "string",
+            "example": "Nithin"
+          },
+          "Date": {
+            "type": "string",
+            "example": "15-12-24"
+          },
+          "amount": {
+            "type": "integer",
+            "example": 100,
+            "format": "int64"
+          },
+          "price_per_unit": {
+            "type": "number",
+            "format": "float",
+            "example": 150.0
+          },
+          "investment_value": {
+            "type": "number",
+            "format": "float",
+            "example": 15000.0
+          }
+        }
+      }
+    }
+  }
+}
