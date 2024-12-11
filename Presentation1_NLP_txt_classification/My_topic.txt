@@ -1,0 +1,31 @@
+I will give a small brief on techniques on text extraction from images           later when we show the code we will go a bit brief.
+generally we use 5 techniques
+
+Preprocessing involves techniques like noise reduction, contrast adjustment, and thresholding to enhance image quality for text extraction. But, thresholding is typically used as the primary method for this task.
+
+Where as OCR (Optical Character Recognition) is used to recognize and convert text from images into machine-readable format.
+
+Text localization identifies regions containing text in an image using methods like edge detection and component analysis.
+
+Text segmentation breaks down the text into lines, words, or characters for accurate extraction.
+
+Finally, Deep learning models like CNNs and RNNs improve text recognition, especially in complex or noisy images.
+
+______________________________________________________________________
+General applications of text classifications are
+
+Spam detection in emails, messages.
+
+Sentiment analysis for customer reviews  social media.
+
+Topic categorization for news articles, blogs, and research papers.
+Document classification in legal, scientific, or medical fields.
+
+Language identification in multilingual texts.
+
+Customer support ticket categorization for efficient routing. and many others
+
+
+
+
+Lowercasing: Converting all text to lowercase to ensure uniformity
